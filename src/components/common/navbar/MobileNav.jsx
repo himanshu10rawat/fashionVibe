@@ -19,7 +19,12 @@ export default function MobileNav() {
             <MenuIcon className="text-gray-500" />
           </button>
           <Link href={"/"} className="relative h-10 w-10 inline-block">
-            <Image src={"/fashion-logo.png"} fill alt="fashion logo" />
+            <Image
+              src={"/fashion-logo.png"}
+              fill
+              sizes="100%"
+              alt="fashion logo"
+            />
           </Link>
         </div>
 

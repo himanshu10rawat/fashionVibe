@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
 import {
@@ -17,29 +17,36 @@ export default function Banner() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const plugin = useRef(
-    Autoplay({
-      delay: 5000,
-      stopOnInteraction: false,
-    }),
+  const plugins = useMemo(
+    () => [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: false,
+      }),
+    ],
+    [],
   );
 
-  useEffect(() => {
+  const updateCarouselState = useCallback(() => {
     if (!api) return;
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
+  }, [api]);
 
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
-    };
+  useEffect(() => {
+    if (!api) return;
 
-    api.on("select", onSelect);
+    api.on("select", updateCarouselState);
+    api.on("reInit", updateCarouselState);
+
+    queueMicrotask(updateCarouselState);
 
     return () => {
-      api.off("select", onSelect);
+      api.off("select", updateCarouselState);
+      api.off("reInit", updateCarouselState);
     };
-  }, [api]);
+  }, [api, updateCarouselState]);
 
   const banners = [
     {
@@ -62,7 +69,7 @@ export default function Banner() {
 
   return (
     <div className="w-full">
-      <Carousel setApi={setApi} plugins={[plugin.current]} className="w-full">
+      <Carousel setApi={setApi} plugins={plugins} className="w-full">
         <CarouselContent>
           {banners.map(({ src, alt }, index) => (
             <CarouselItem key={src} className={"relative w-full h-100"}>

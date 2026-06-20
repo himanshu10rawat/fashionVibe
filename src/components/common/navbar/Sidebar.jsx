@@ -5,7 +5,7 @@ export default function Sidebar({ isSidebarOpened, sidebarHandle }) {
   return (
     <div
       onClick={() => sidebarHandle(false)}
-      className={`w-full h-dvh bg-black/30 fixed z-10 top-0 ${isSidebarOpened ? "left-0" : "-left-full"}`}
+      className={`w-full h-dvh bg-black/30 fixed z-50 top-0 ${isSidebarOpened ? "left-0" : "-left-full"}`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
