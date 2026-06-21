@@ -14,7 +14,7 @@ export default function Card() {
         <div className="absolute bottom-0 left-0 p-10 text-white z-10">
           <h3 className="mb-2 font-bold text-2xl uppercase">Ethic Wear</h3>
           <p className="mb-2 font-semibold text-lg capitalize">50-80% off</p>
-          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer">
+          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer ease-in-out">
             explore now
           </button>
         </div>
@@ -30,7 +30,7 @@ export default function Card() {
         <div className="absolute bottom-0 left-0 p-10 text-white z-10">
           <h3 className="mb-2 font-bold text-2xl uppercase">Casual Wear</h3>
           <p className="mb-2 font-semibold text-lg capitalize">40-80% off</p>
-          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer">
+          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer ease-in-out">
             explore now
           </button>
         </div>
@@ -48,7 +48,7 @@ export default function Card() {
             Men&apos;s Activewear
           </h3>
           <p className="mb-2 font-semibold text-lg capitalize">30-80% off</p>
-          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer">
+          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer ease-in-out">
             explore now
           </button>
         </div>
@@ -66,7 +66,7 @@ export default function Card() {
             Women&apos;s Activewear
           </h3>
           <p className="mb-2 font-semibold text-lg capitalize">30-80% off</p>
-          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer">
+          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer ease-in-out">
             explore now
           </button>
         </div>
@@ -82,7 +82,7 @@ export default function Card() {
         <div className="absolute bottom-0 left-0 p-10 text-white z-10">
           <h3 className="mb-2 font-bold text-2xl uppercase">Innerwear</h3>
           <p className="mb-2 font-semibold text-lg capitalize">up to 70% off</p>
-          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer">
+          <button className="bg-white text-black font-semibold border-0 px-5 py-2.5 capitalize transition-color duration-300 hover:bg-black hover:text-white cursor-pointer ease-in-out">
             explore now
           </button>
         </div>
