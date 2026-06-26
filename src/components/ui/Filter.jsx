@@ -16,7 +16,7 @@ export default function Filter({ items, isColor = false }) {
               width={"80%"}
               height={"80%"}
               strokeWidth={"3"}
-              className="absolute text-white left-1/2 top-1/2 -translate-1/2 hidden peer-checked:block"
+              className="absolute pointer-events-none text-white left-1/2 top-1/2 -translate-1/2 hidden peer-checked:block"
             />
           </div>
           <div className="flex items-center gap-1.5">
