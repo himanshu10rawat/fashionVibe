@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Banner from "./Banner";
 
-export default function ProductCard({ productList }) {
+export default function ProductCard({ productList, productCategory }) {
   const banners = [
     {
       src: "/modal-images/men1.jpg",
@@ -37,7 +37,11 @@ export default function ProductCard({ productList }) {
           reviews,
         }) => (
           <Link
-            href={""}
+            href={`${productCategory}/${title
+              .toLowerCase()
+              .split("")
+              .map((item) => (item === " " ? "-" : item))
+              .join("")}`}
             key={title}
             className="bg-white transition-all duration-300 ease-in-out cursor-pointer group hover:shadow-xl hover:shadow-gray-200"
           >

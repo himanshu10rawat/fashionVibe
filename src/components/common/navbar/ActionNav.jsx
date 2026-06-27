@@ -1,4 +1,4 @@
-import { Heart, ShoppingBagIcon, User } from "lucide-react";
+import { Heart, ShoppingBag, ShoppingBagIcon, User } from "lucide-react";
 
 export default function ActionNav() {
   return (
@@ -12,8 +12,8 @@ export default function ActionNav() {
         <span className="text-xs md:text-sm">Wishlist</span>
       </button>
       <button className="flex flex-col items-center">
-        <ShoppingBagIcon className="w-4 h-4 md:w-5 md:h-5 stroke-1" />
-        <span className="text-xs md:text-sm">Cart</span>
+        <ShoppingBag className="w-4 h-4 md:w-5 md:h-5 stroke-1" />
+        <span className="text-xs md:text-sm">Bag</span>
       </button>
     </div>
   );

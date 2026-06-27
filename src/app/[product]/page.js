@@ -4,7 +4,6 @@ import PriceFilter from "@/components/ui/PriceFilter";
 import ProductCard from "@/components/ui/ProductCard";
 import Shorting from "@/components/ui/Shorting";
 import SizeFilter from "@/components/ui/SizeFilter";
-import { Check, ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
 export default async function Product({ params }) {
   const { product } = await params;
@@ -462,7 +461,7 @@ export default async function Product({ params }) {
         </aside>
         <main className="flex-1 p-5">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-            <ProductCard productList={productList} />
+            <ProductCard productList={productList} productCategory={product} />
           </div>
         </main>
       </div>

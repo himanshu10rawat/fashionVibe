@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, MenuIcon, ShoppingBagIcon } from "lucide-react";
+import { Heart, MenuIcon, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
@@ -35,7 +35,7 @@ export default function MobileNav() {
             <Heart className="text-gray-500" />
           </button>
           <button>
-            <ShoppingBagIcon className="text-gray-500" />
+            <ShoppingBag className="text-gray-500" />
           </button>
         </div>
       </header>
