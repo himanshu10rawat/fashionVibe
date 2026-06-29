@@ -6,6 +6,7 @@ import {
   ChevronRight,
   CornerDownLeft,
   Info,
+  Tag,
   Van,
   X,
 } from "lucide-react";
@@ -13,6 +14,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Cart() {
+  const priceDetails = [
+    {
+      title: "Total MRP",
+      value: "5,195",
+    },
+    {
+      title: "Discount on MRP",
+      value: "1,924",
+    },
+    {
+      title: "Coupon discount",
+      value: "Apply Coupon",
+    },
+    {
+      title: "Platform fee",
+      value: "23",
+    },
+  ];
   return (
     <section className="p-10 flex items-start">
       <div className="w-[60%] p-5 border-r border-gray-200">
@@ -20,7 +39,7 @@ export default function Cart() {
           type="button"
           className="flex items-center justify-between p-5 bg-red-50 rounded-sm border border-gray-200 w-full cursor-pointer mb-3"
         >
-          <div className="text-left text-gray-800 pr-5 shrink-0 w-[75%]">
+          <div className="text-left text-gray-800 pr-5 grow w-[calc(100%-260px)]">
             <p className="mb-0.5">
               Deliver to: <b>Himanshu Rawat, 201309</b>
             </p>
@@ -29,7 +48,7 @@ export default function Cart() {
               school & jagdamba builder, Noida
             </p>
           </div>
-          <div className="uppercase py-2 px-5 border border-red-500 text-red-500 font-semibold text-sm rounded-sm shrink-0 flow">
+          <div className="uppercase p-2 border border-red-500 text-red-500 font-semibold text-sm rounded-sm w-40 shrink-0">
             Change Address
           </div>
         </button>
@@ -181,7 +200,7 @@ export default function Cart() {
               <h2 className="capitalize font-bold text-gray-800">Roadster</h2>
               <Link
                 href={""}
-                className="text-sm text-gray-800 text-ellipsis overflow-hidden text-nowrap block"
+                className="text-sm text-gray-800 text-ellipsis overflow-hidden text-nowrap block mb-1"
               >
                 The Roadster Life Co. Men Pure Cotton Flared Heavy Fade Jeans.
                 The Roadster Life Co. Men Pure Cotton Flared Heavy Fade Jeans
@@ -255,7 +274,79 @@ export default function Cart() {
           <ChevronRight strokeWidth={2} height={21} width={21} />
         </Link>
       </div>
-      <div className="w-[40%] p-5"></div>
+      <div className="w-[40%] p-5">
+        <div className="py-5 border-b border-gray-200">
+          <h2 className="uppercase text-sm font-semibold text-gray-600 mb-3">
+            coupons
+          </h2>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Tag width={20} height={20} strokeWidth={1} />{" "}
+              <span className="text-sm text-gray-800 font-bold capitalize">
+                apply coupons
+              </span>
+            </div>
+            <button
+              type="button"
+              className="uppercase py-1 px-5 border border-red-500 text-sm text-red-500 font-bold cursor-pointer transition-colors ease-in-out duration-300 hover:bg-red-100"
+            >
+              apply
+            </button>
+          </div>
+        </div>
+        <div className="py-5 border-b border-gray-200">
+          <h2 className="text-gray-600 mb-3 font-semibold text-sm">
+            <span className="uppercase">price details</span>{" "}
+            <span className="capitalize">(2 items)</span>
+          </h2>
+          <ul className="flex flex-col gap-3">
+            {priceDetails.map(({ title, value }) => (
+              <li
+                key={title}
+                className="flex items-center justify-between text-sm text-gray-700 capitalize"
+              >
+                <span>
+                  {title}{" "}
+                  {title === "Platform fee" && (
+                    <button className="font-bold text-red-500 cursor-pointer">
+                      Know More
+                    </button>
+                  )}
+                </span>{" "}
+                <span
+                  className={`${value === "Apply Coupon" && "text-red-500"} ${title === "Discount on MRP" && "text-green-500"}`}
+                >
+                  {title === "Discount on MRP" && "-"}
+                  {value !== "Apply Coupon" && "₹"}
+                  {value}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="pt-4">
+          <div className="flex items-center justify-between text-sm text-gray-700 mb-2 capitalize font-bold">
+            <span>total amount</span>
+            <span>₹3,192</span>
+          </div>
+          <p className="text-xs text-gray-800 mb-1">
+            By placing the order, you agree to Fashion&apos;s{" "}
+            <Link href={""} className="font-bold text-red-500">
+              Terms of Use
+            </Link>{" "}
+            and{" "}
+            <Link href={""} className="font-bold text-red-500">
+              Privacy Policy
+            </Link>
+          </p>
+          <button
+            type="button"
+            className="uppercase text-white text-sm bg-red-500 font-bold p-3 cursor-pointer w-full transition-colors ease-in-out duration-300 hover:bg-red-600"
+          >
+            Place order
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
