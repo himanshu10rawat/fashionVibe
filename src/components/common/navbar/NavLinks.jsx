@@ -17,7 +17,7 @@ export default function NavLinks() {
           {links.map(({ item, url }) => (
             <li className="text-xs md:text-sm" key={item}>
               <Link
-                className={`relative md:pb-7.5 lg:pb-8 md:px-3 lg:px-4 after:content-[''] after:border-0 hover:after:border-3 ${hoverValue === item && "after:border-3 after:w-full"} after:border-amber-600 after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full ${item === "men" ? "after:border-pink-600" : item === "women" ? "after:border-pink-400" : ""}`}
+                className={`relative md:pb-7.5 lg:pb-8 md:px-3 lg:px-4 after:content-[''] after:transition-all after:duration-300 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 ${hoverValue === item && "after:w-full"} ${item === "men" ? "after:bg-pink-600" : item === "women" ? "after:bg-pink-400" : item === "kids" ? "after:bg-orange-500" : item === "home" ? "after:bg-yellow-500" : "after:bg-green-500"}`}
                 onMouseEnter={() => setHoverValue(item)}
                 onMouseLeave={() => setHoverValue("")}
                 href={`/shop/${url}`}
@@ -29,7 +29,7 @@ export default function NavLinks() {
         </ul>
       </nav>
       {hoverValue && (
-        <div className="w-full absolute top-20 left-0 z-50 h-[calc(100dvh-80px)] bg-black/50 flex justify-center">
+        <div className="w-full absolute top-20.25 left-0 z-50 h-[calc(100dvh-80px)] bg-black/50 flex justify-center">
           <div
             onMouseEnter={() => setHoverValue(hoverValue)}
             onMouseLeave={() => setHoverValue("")}
@@ -41,7 +41,7 @@ export default function NavLinks() {
                   <Fragment key={category.title}>
                     <div className="w-1/5 px-2 pb-2">
                       <Link
-                        className={`text-sm capitalize font-semibold mb-2 inline-block ${hoverValue === "men" ? "text-pink-600" : hoverValue === "women" ? "text-pink-400" : ""}`}
+                        className={`text-sm capitalize font-semibold mb-2 inline-block ${hoverValue === "men" ? "text-pink-600" : hoverValue === "women" ? "text-pink-400" : hoverValue === "kids" ? "text-orange-500" : hoverValue === "home" ? "text-yellow-500" : "text-green-500"}`}
                         href={`/${category.url}`}
                       >
                         {category.title}
