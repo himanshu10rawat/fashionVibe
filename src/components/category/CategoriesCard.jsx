@@ -6,14 +6,14 @@ export default function CategoriesCard({ arrayLength }) {
     <>
       {Array.from({ length: arrayLength }).map((_, index) => (
         <Link key={index} href={""} className="block text-center">
-          <div className="w-min p-1 bg-linear-to-r from-orange-500 via-red-500 to-purple-500 rounded-[50%] mx-auto">
-            <div className="relative h-45 w-45 overflow-hidden rounded-[50%]">
+          <div className="w-min p-1 bg-linear-to-r from-orange-500 via-red-500 to-purple-500 rounded-full mx-auto">
+            <div className="relative h-45 w-45 overflow-hidden rounded-full">
               <Image
                 src={"/modal-images/women1.jpg"}
                 alt="Women modal image"
                 fill
                 sizes="100%"
-                className="object-cover object-top rounded-[50%] block transition-transform ease-in-out duration-500 hover:scale-125"
+                className="object-cover object-top rounded-full block transition-transform ease-in-out duration-500 hover:scale-125"
               />
             </div>
           </div>

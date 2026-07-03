@@ -23,7 +23,7 @@ export default function Filter({ items, isColor = false }) {
             {isColor && (
               <span
                 style={{ "--itemColor": item.toLowerCase() }}
-                className={`inline-block h-4 w-4 border border-gray-300 rounded-[50%] bg-(--itemColor)`}
+                className={`inline-block h-4 w-4 border border-gray-300 rounded-full bg-(--itemColor)`}
               ></span>
             )}
             <label

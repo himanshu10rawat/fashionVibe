@@ -1,5 +1,5 @@
-import PincodeInput from "@/components/ui/PincodeInput";
-import ProductCard from "@/components/ui/ProductCard";
+import PincodeInput from "@/components/productDetails/PincodeInput";
+import ProductCard from "@/components/product/ProductCard";
 import {
   ChevronRightIcon,
   Heart,

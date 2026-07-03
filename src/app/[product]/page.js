@@ -1,9 +1,9 @@
-import Filter from "@/components/ui/Filter";
-import FilterSearch from "@/components/ui/FilterSearch";
-import PriceFilter from "@/components/ui/PriceFilter";
-import ProductCard from "@/components/ui/ProductCard";
-import Shorting from "@/components/ui/Shorting";
-import SizeFilter from "@/components/ui/SizeFilter";
+import Filter from "@/components/product/Filter";
+import FilterSearch from "@/components/product/FilterSearch";
+import PriceFilter from "@/components/product/PriceFilter";
+import ProductCard from "@/components/product/ProductCard";
+import Shorting from "@/components/product/Shorting";
+import SizeFilter from "@/components/product/SizeFilter";
 
 export default async function Product({ params }) {
   const { product } = await params;

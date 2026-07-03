@@ -1,4 +1,4 @@
-import WishlistCard from "@/components/ui/WishlistCard";
+import WishlistCard from "@/components/wishlist/WishlistCard";
 
 export default function Wishlist() {
   const wishlistItems = [

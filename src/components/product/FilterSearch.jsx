@@ -15,7 +15,7 @@ export default function FilterSearch({ filterName }) {
           <button
             onClick={() => setIsSearchOpen(true)}
             type="button"
-            className="bg-gray-100 h-8 w-8 rounded-[50%] flex items-center justify-center cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-200"
+            className="bg-gray-100 h-8 w-8 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-300 ease-in-out hover:bg-gray-200"
           >
             <Search width={16} height={16} className="text-gray-500" />
           </button>

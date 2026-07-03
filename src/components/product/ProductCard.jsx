@@ -1,7 +1,7 @@
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Banner from "./Banner";
+import Banner from "../home/Banner";
 
 export default function ProductCard({ productList, productCategory }) {
   const banners = [

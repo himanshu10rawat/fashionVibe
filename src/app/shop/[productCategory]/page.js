@@ -1,9 +1,9 @@
-import Banner from "@/components/ui/Banner";
-import Card from "@/components/ui/Card";
-import CategoriesCard from "@/components/ui/CategoriesCard";
-import LuxCard from "@/components/ui/LuxCard";
-import TopBrandCard from "@/components/ui/TopBrandCard";
-import TrendingCard from "@/components/ui/TrendingCard";
+import Banner from "@/components/home/Banner";
+import Card from "@/components/home/Card";
+import CategoriesCard from "@/components/category/CategoriesCard";
+import LuxCard from "@/components/category/LuxCard";
+import TopBrandCard from "@/components/category/TopBrandCard";
+import TrendingCard from "@/components/category/TrendingCard";
 
 export default async function ProductCategory({ params }) {
   const { productCategory } = await params;

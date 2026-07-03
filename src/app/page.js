@@ -1,6 +1,6 @@
-import Banner from "@/components/ui/Banner";
-import Card from "@/components/ui/Card";
-import MultiCarousel from "@/components/ui/MultiCarousel";
+import Banner from "@/components/home/Banner";
+import Card from "@/components/home/Card";
+import MultiCarousel from "@/components/home/MultiCarousel";
 
 export default function Home() {
   const banners = [

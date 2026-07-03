@@ -17,7 +17,7 @@ export default function NavLinks() {
           {links.map(({ item, url }) => (
             <li className="text-xs md:text-sm" key={item}>
               <Link
-                className={`relative md:pb-7.5 lg:pb-8 md:px-3 lg:px-4 after:content-[''] after:transition-all after:duration-300 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 ${hoverValue === item && "after:w-full"} ${item === "men" ? "after:bg-pink-600" : item === "women" ? "after:bg-pink-400" : item === "kids" ? "after:bg-orange-500" : item === "home" ? "after:bg-yellow-500" : "after:bg-green-500"}`}
+                className={`relative block md:py-7 lg:py-7.5 md:px-3 lg:px-4 after:content-[''] after:transition-all after:duration-300 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-0 ${hoverValue === item && "after:w-full"} ${item === "men" ? "after:bg-pink-600" : item === "women" ? "after:bg-pink-400" : item === "kids" ? "after:bg-orange-500" : item === "home" ? "after:bg-yellow-500" : "after:bg-green-500"}`}
                 onMouseEnter={() => setHoverValue(item)}
                 onMouseLeave={() => setHoverValue("")}
                 href={`/shop/${url}`}
