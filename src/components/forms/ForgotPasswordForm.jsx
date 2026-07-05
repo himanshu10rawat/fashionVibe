@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { forgotPasswordSchema } from "../validations/forgotPasswordSchema";
 import Input from "../shared/Input";
+import Button from "../shared/Button";
 
 export default function ForgotPasswordForm() {
   const {
@@ -22,7 +23,10 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col w-full gap-3"
+    >
       <Input
         register={register}
         errors={errors}
@@ -32,13 +36,7 @@ export default function ForgotPasswordForm() {
         autoComplete={"email"}
         type={"text"}
       />
-      <button
-        type="submit"
-        className="w-full bg-pink-500 transition-colors ease-in-out duration-300 hover:bg-pink-400 p-3 text-white font-semibold cursor-pointer capitalize"
-        aria-label="Send Reset Link Button"
-      >
-        send reset link
-      </button>
+      <Button areaLabel={"Send Reset Link"}>send reset link</Button>
     </form>
   );
 }

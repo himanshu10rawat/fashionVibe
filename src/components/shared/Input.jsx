@@ -10,14 +10,15 @@ export default function Input({
   id,
   autoComplete,
   type,
+  rounded = true,
 }) {
   return (
-    <div className="w-full mb-3">
+    <div className="w-full">
       <div className="relative">
         <input
           id={id}
           autoComplete={autoComplete}
-          className="py-2 px-4 text-gray-600 border border-gray-300 focus:border-pink-400 outline-0 w-full rounded-sm bg-white peer"
+          className={`py-2 px-4 text-gray-600 border border-gray-300 focus:border-pink-400 outline-0 w-full ${rounded && "rounded-sm"} bg-white peer`}
           type={`${passwordVisible ? (passwordVisible[name] ? "text" : "password") : type}`}
           placeholder=" "
           {...register(name)}

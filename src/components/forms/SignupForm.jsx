@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { signupSchema } from "../validations/signupSchema";
 import { useState } from "react";
 import Input from "../shared/Input";
+import Button from "../shared/Button";
 
 export default function SignupForm() {
   const [passwordVisible, setPasswordVisible] = useState({
@@ -33,7 +34,7 @@ export default function SignupForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center w-full"
+      className="flex flex-col items-center justify-center w-full gap-3"
     >
       <Input
         register={register}
@@ -95,14 +96,7 @@ export default function SignupForm() {
           </p>
         )}
       </div>
-
-      <button
-        type="submit"
-        aria-label="Create account"
-        className="w-full bg-pink-500 transition-colors ease-in-out duration-300 hover:bg-pink-400 p-3 text-white font-semibold cursor-pointer"
-      >
-        Create Account
-      </button>
+      <Button areaLabel={"Create account"}>Create Account</Button>
     </form>
   );
 }

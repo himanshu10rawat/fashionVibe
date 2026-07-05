@@ -6,6 +6,7 @@ import { loginSchema } from "../validations/loginSchema";
 import Link from "next/link";
 import { useState } from "react";
 import Input from "../shared/Input";
+import Button from "../shared/Button";
 
 export default function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState({ password: false });
@@ -29,7 +30,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center w-full"
+      className="flex flex-col items-center justify-center w-full gap-3"
     >
       <Input
         register={register}
@@ -70,13 +71,7 @@ export default function LoginForm() {
           Forgot Password?
         </Link>
       </div>
-      <button
-        aria-label="Login Button"
-        className="w-full bg-pink-500 transition-colors ease-in-out duration-300 hover:bg-pink-400 p-3 text-white font-semibold cursor-pointer"
-        type="submit"
-      >
-        Login
-      </button>
+      <Button areaLabel={"Login"}>Login</Button>
     </form>
   );
 }

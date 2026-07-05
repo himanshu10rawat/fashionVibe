@@ -3,7 +3,7 @@ import ProfileDetails from "@/components/profile/ProfileDetails";
 
 export default function profile() {
   return (
-    <section className="py-20 px-50">
+    <section className="py-10 px-25 xl:py-20 xl:px-50">
       <Profile>
         <ProfileDetails />
       </Profile>
