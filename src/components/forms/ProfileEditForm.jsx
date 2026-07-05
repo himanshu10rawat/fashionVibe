@@ -93,7 +93,7 @@ export default function ProfileEditForm() {
             aria-label="Change"
             className="uppercase shrink-0 text-sm font-bold text-gray-800 border border-gray-300 w-1/2 px-4 py-2.5 cursor-pointer transition-colors duration-300 hover:bg-gray-100"
           >
-            {editable.mobile ? "Save" : "change"}
+            {editable.mobile ? "done" : "change"}
           </button>
         </div>
         <div
@@ -135,7 +135,7 @@ export default function ProfileEditForm() {
             aria-label="Change"
             className="uppercase shrink-0 text-sm font-bold text-gray-800 border border-gray-300 w-1/2 px-4 py-2.5 cursor-pointer transition-colors duration-300 hover:bg-gray-100"
           >
-            {editable.email ? "Save" : "change"}
+            {editable.email ? "done" : "change"}
           </button>
         </div>
         <Input
@@ -207,7 +207,13 @@ export default function ProfileEditForm() {
           type={"text"}
         />
       </div>
-      <Button areaLabel={"save details"}>save details</Button>
+      <Button
+        areaLabel={"save details"}
+        bgColor={"bg-red-400"}
+        bgHoverColor={"hover:bg-red-500"}
+      >
+        save details
+      </Button>
     </form>
   );
 }
