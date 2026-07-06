@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
-import SearchBar from "./SearchBar";
+import SearchInput from "../../shared/SearchInput";
 import ActionNav from "./ActionNav";
 
 export default function DesktopNav() {
@@ -17,7 +17,17 @@ export default function DesktopNav() {
         />
       </Link>
       <NavLinks />
-      <SearchBar />
+      <SearchInput
+        placeholder={"Search for fashion"}
+        bgColor="bg-gray-100"
+        focusBgColor="focus-within:bg-white"
+        rounded="rounded-sm"
+        borderColor="border-gray-100"
+        strokeWidth="2"
+        strokeColor="#6a7282"
+        textColor="text-gray-500"
+        placeholderColor="placeholder:text-gray-500"
+      />
       <ActionNav />
     </header>
   );

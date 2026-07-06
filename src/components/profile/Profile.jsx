@@ -82,7 +82,7 @@ export default function Profile({ children }) {
     },
   ];
   return (
-    <>
+    <section className="py-10 px-25 xl:py-20 xl:px-50">
       <div className="pb-2 border-b border-gray-300">
         <h1 className="text-lg capitalize font-bold text-gray-800">Account</h1>
         <p className="text-sm text-gray-600">Himanshu Rawat</p>
@@ -116,6 +116,6 @@ export default function Profile({ children }) {
         </aside>
         <main className="grow p-5">{children}</main>
       </div>
-    </>
+    </section>
   );
 }

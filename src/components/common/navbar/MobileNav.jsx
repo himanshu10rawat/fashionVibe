@@ -3,7 +3,7 @@
 import { Heart, MenuIcon, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import SearchBar from "./SearchBar";
+import SearchInput from "../../shared/SearchInput";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import BottomNavTabs from "./BottomNavTabs";
@@ -39,7 +39,15 @@ export default function MobileNav() {
           </button>
         </div>
       </header>
-      <SearchBar />
+      <SearchInput
+        placeholder={"Search for fashion"}
+        bgColor="bg-gray-100"
+        rounded="rounded-sm"
+        borderColor="border-gray-100"
+        strokeWidth="2"
+        strokeColor="#6a7282"
+        textColor="text-gray-500"
+      />
       <Sidebar isSidebarOpened={sidebarOpen} sidebarHandle={setSidebarOpen} />
       <BottomNavTabs />
     </>
