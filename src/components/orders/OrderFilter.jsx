@@ -5,8 +5,15 @@ import Modal from "../shared/Modal";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-export default function OrderFilter({ filterItems, filterTitles }) {
+export default function OrderFilter() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const filterItems = {
+    status: ["all", "on the way", "delivered", "cancelled", "returned"],
+    time: ["anytime", "last 30 days", "last 6 months", "last year"],
+  };
+
+  const filterTitles = Object.keys(filterItems);
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -24,6 +31,9 @@ export default function OrderFilter({ filterItems, filterTitles }) {
     <Modal
       open={modalOpen}
       onOpenChange={setModalOpen}
+      buttonStyle={
+        "capitalize border border-gray-200 py-2.5 px-5 rounded-full text-gray-800 text-sm flex items-center gap-2 bg-white cursor-pointer transition-colors duration-200 hover:bg-gray-100"
+      }
       button={
         <>
           <Sliders
@@ -38,11 +48,11 @@ export default function OrderFilter({ filterItems, filterTitles }) {
       header={"Filter Orders"}
       body={
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="max-h-[calc(100dvh-300px)] overflow-auto">
+          <div className="max-h-[calc(100dvh-250px)] overflow-auto">
             {filterTitles.map((title, index) => (
               <div
                 key={title}
-                className={`${index === 0 && "border-b"} border-gray-200 pb-5`}
+                className={`${index === 0 && "border-b"} border-gray-200 py-5`}
               >
                 <h2 className="font-semibold text-gray-800 capitalize mb-3">
                   {title}

@@ -23,6 +23,7 @@ export default function MobileNav() {
           <Link href={"/"} className="relative h-10 w-10 inline-block">
             <Image
               src={"/fashion-logo.png"}
+              loading="eager"
               fill
               sizes="100%"
               alt="fashion logo"
