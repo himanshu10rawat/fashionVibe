@@ -9,8 +9,16 @@ export default function Input({
   name,
   id,
   autoComplete,
-  type,
+  type = "text",
   rounded = true,
+  borderTop = "border-t",
+  borderLeft = "border-l",
+  borderRight = "border-r",
+  borderBottom = "border-b",
+  paddingX = "px-4",
+  labelLeft = "left-4",
+  focusBorderColor = "focus:border-pink-400",
+  focusLabelTextColor = "peer-focus:text-gray-400",
 }) {
   return (
     <div className="w-full">
@@ -18,14 +26,14 @@ export default function Input({
         <input
           id={id}
           autoComplete={autoComplete}
-          className={`py-2 px-4 text-gray-600 border border-gray-300 focus:border-pink-400 outline-0 w-full ${rounded && "rounded-sm"} bg-white peer`}
+          className={`py-2 ${paddingX} text-gray-600 ${borderTop} ${borderLeft} ${borderRight} ${borderBottom} border-gray-300 ${focusBorderColor} outline-0 w-full ${rounded && "rounded-sm"} bg-white peer`}
           type={`${passwordVisible ? (passwordVisible[name] ? "text" : "password") : type}`}
           placeholder=" "
           {...register(name)}
         />
         <label
           htmlFor={id}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-light pointer-events-none transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:bg-white peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-white"
+          className={`absolute ${labelLeft} top-1/2 -translate-y-1/2 text-gray-400 font-light pointer-events-none transition-all duration-300 peer-focus:top-0 peer-focus:text-xs peer-focus:bg-white ${focusLabelTextColor} peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-white`}
         >
           {label}
         </label>
