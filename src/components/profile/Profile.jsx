@@ -26,23 +26,6 @@ export default function Profile({ children }) {
       ],
     },
     {
-      title: "credits",
-      list: [
-        {
-          item: "coupons",
-          url: "/coupons",
-        },
-        {
-          item: "myntra credit",
-          url: "/myntra-credit",
-        },
-        {
-          item: "mynCash",
-          url: "/myntra-points",
-        },
-      ],
-    },
-    {
       title: "accounts",
       list: [
         {
@@ -50,12 +33,8 @@ export default function Profile({ children }) {
           url: "/profile",
         },
         {
-          item: "saved cards",
-          url: "/saved-cards",
-        },
-        {
-          item: "saved wallets/BNPL",
-          url: "/saved-wallets-bnpl",
+          item: "My wallet",
+          url: "/my-wallet",
         },
         {
           item: "addresses",
