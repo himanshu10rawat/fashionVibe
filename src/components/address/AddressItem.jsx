@@ -1,4 +1,5 @@
 import AddressForm from "../forms/AddressForm";
+import AddressDelete from "./AddressDelete";
 
 export default function AddressItem({
   id,
@@ -51,12 +52,7 @@ export default function AddressItem({
           city={city}
           isDefaultAddress={isDefault}
         />
-        <button
-          type="button"
-          className="text-center py-2 uppercase text-sm font-bold text-blue-600 cursor-pointer transition-colors duration-200 hover:bg-blue-600 hover:text-white"
-        >
-          Remove
-        </button>
+        <AddressDelete />
       </div>
     </div>
   );

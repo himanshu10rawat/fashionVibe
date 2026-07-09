@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Modal from "../shared/Modal";
 import { useForm, useWatch } from "react-hook-form";
 import Input from "../shared/Input";
 import Button from "../shared/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addressFormSchema } from "../validations/addressFormSchema";
 
 export default function AddressForm({
   button,
@@ -21,12 +23,16 @@ export default function AddressForm({
   city,
   isDefaultAddress,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(addressFormSchema),
     defaultValues: {
       username: username ? username : "",
       mobile: mobile ? mobile : "",
@@ -46,6 +52,8 @@ export default function AddressForm({
 
   const onSubmit = (data) => {
     console.log(data);
+    reset();
+    setIsOpen(false);
   };
   return (
     <Modal
@@ -188,26 +196,26 @@ export default function AddressForm({
             </label>
           </div>
           <div className="flex items-center">
-            <Button
-              bgColor="bg-gray-100"
-              textColor="text-black"
-              bgHoverColor="hover:bg-gray-200"
-              areaLabel="cancel"
+            <button
+              onClick={() => setIsOpen(false)}
+              type="button"
+              className="bg-gray-100 hover:bg-gray-200 text-black w-full transition-colors ease-in-out duration-300 p-3 font-semibold cursor-pointer capitalize"
+              aria-label="cancel"
             >
               Cancel
-            </Button>
+            </button>
             <Button
               bgColor="bg-red-400"
               bgHoverColor="hover:bg-red-500"
-              areaLabel="save"
+              ariaLabel="save"
             >
               Save
             </Button>
           </div>
         </form>
       }
-      //   open={open}
-      //   onOpenChange={onOpenChange}
+      open={isOpen}
+      onOpenChange={setIsOpen}
     />
   );
 }

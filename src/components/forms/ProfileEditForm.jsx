@@ -208,7 +208,7 @@ export default function ProfileEditForm() {
         />
       </div>
       <Button
-        areaLabel={"save details"}
+        ariaLabel={"save details"}
         bgColor={"bg-red-400"}
         bgHoverColor={"hover:bg-red-500"}
       >

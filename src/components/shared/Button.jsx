@@ -1,6 +1,6 @@
 export default function Button({
   children,
-  areaLabel,
+  ariaLabel,
   type = "submit",
   bgColor = "bg-pink-400",
   bgHoverColor = "hover:bg-pink-500",
@@ -8,7 +8,7 @@ export default function Button({
 }) {
   return (
     <button
-      aria-label={areaLabel}
+      aria-label={ariaLabel}
       className={`w-full ${bgColor} transition-colors ease-in-out duration-300 ${bgHoverColor} p-3 ${textColor} font-semibold cursor-pointer capitalize`}
       type={type}
     >

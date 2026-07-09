@@ -71,7 +71,7 @@ export default function LoginForm() {
           Forgot Password?
         </Link>
       </div>
-      <Button areaLabel={"Login"}>Login</Button>
+      <Button ariaLabel={"Login"}>Login</Button>
     </form>
   );
 }

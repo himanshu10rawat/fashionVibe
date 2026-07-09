@@ -52,7 +52,7 @@ export default function ResetPasswordForm() {
         id={"confirmPassword"}
         autoComplete={"new-password"}
       />
-      <Button areaLabel={"Reset Password"}>reset password</Button>
+      <Button ariaLabel={"Reset Password"}>reset password</Button>
     </form>
   );
 }

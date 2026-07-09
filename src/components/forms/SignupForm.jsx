@@ -96,7 +96,7 @@ export default function SignupForm() {
           </p>
         )}
       </div>
-      <Button areaLabel={"Create account"}>Create Account</Button>
+      <Button ariaLabel={"Create account"}>Create Account</Button>
     </form>
   );
 }

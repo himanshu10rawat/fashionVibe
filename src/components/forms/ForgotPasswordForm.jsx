@@ -36,7 +36,7 @@ export default function ForgotPasswordForm() {
         autoComplete={"email"}
         type={"text"}
       />
-      <Button areaLabel={"Send Reset Link"}>send reset link</Button>
+      <Button ariaLabel={"Send Reset Link"}>send reset link</Button>
     </form>
   );
 }
