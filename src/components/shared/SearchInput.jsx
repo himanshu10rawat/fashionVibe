@@ -20,7 +20,8 @@ export default function SearchInput({
   iconWidth = "17",
 }) {
   return (
-    <div
+    <label
+      htmlFor="search"
       className={`flex items-center ${borderSize} ${bgColor} ${width} py-2.5 px-3 ${rounded} ${borderColor} mx-2 lg:mx-0 mb-4 lg:mb-0 mt-18 lg:mt-0 shadow-lg lg:shadow-none ${focusBgColor} ${focusBorderColor}`}
     >
       <Search
@@ -31,10 +32,11 @@ export default function SearchInput({
       />
       <input
         className={`${textColor} ml-3 outline-0 ${textSize} grow ${placeholderColor} has`}
+        id="search"
         type={type}
         name={name}
         placeholder={placeholder}
       />
-    </div>
+    </label>
   );
 }
