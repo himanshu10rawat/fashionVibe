@@ -1,11 +1,15 @@
 import SearchInput from "@/components/shared/SearchInput";
 import { Bell, Menu, Sun, User } from "lucide-react";
 
-export default function AdminNavbar() {
+export default function AdminNavbar({ setSidebarOpen }) {
   return (
-    <header className="bg-white shadow py-3 px-10 flex items-center justify-between">
+    <header className="bg-white shadow py-3 px-10 flex items-center justify-between sticky top-0 left-0">
       <div className="flex items-center gap-5">
-        <button type="button" className="cursor-pointer">
+        <button
+          type="button"
+          onClick={() => setSidebarOpen((prev) => !prev)}
+          className="cursor-pointer"
+        >
           <Menu />
         </button>
         <SearchInput

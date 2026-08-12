@@ -15,7 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
   const pathname = usePathname();
 
   const adminSidebarList = [
@@ -66,7 +66,9 @@ export default function AdminSidebar() {
     },
   ];
   return (
-    <aside className="bg-black text-white w-60 px-3 py-4">
+    <aside
+      className={`bg-black text-white px-3 py-4 ${sidebarOpen ? "w-60" : "w-20"}`}
+    >
       <div className="mb-5 flex items-center gap-2 px-2">
         <div className="relative w-8 h-8 rounded-sm overflow-hidden">
           <Image
@@ -77,7 +79,9 @@ export default function AdminSidebar() {
             sizes="100%"
           />
         </div>
-        <span className="font-semibold text-xl">Fashion</span>
+        <span className={`font-semibold text-xl ${!sidebarOpen && "hidden"}`}>
+          Fashion
+        </span>
       </div>
       <nav className="flex flex-col gap-2">
         {adminSidebarList.map(({ item, icon, url }) => (
@@ -86,7 +90,7 @@ export default function AdminSidebar() {
             key={item}
             href={url}
           >
-            {icon} {item}
+            {icon} {sidebarOpen && item}
           </Link>
         ))}
       </nav>
