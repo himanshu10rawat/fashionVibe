@@ -1,34 +1,10 @@
+import OrdersOverview from "@/components/admin/dashboard/OrdersOverview";
+import RecentOrders from "@/components/admin/dashboard/RecentOrders";
+import RevenueOverview from "@/components/admin/dashboard/RevenueOverview";
 import TotalRecord from "@/components/admin/dashboard/TotalRecord";
 import DateRangePicker from "@/components/admin/DateRangePicker";
-import { Package, ShoppingCart, Users, Wallet } from "lucide-react";
 
 export default function Dashboard() {
-  const totalRecordList = [
-    {
-      icon: <Wallet />,
-      title: "Total Revenue",
-      amount: "125000",
-      percentDiff: "15.6",
-    },
-    {
-      icon: <ShoppingCart />,
-      title: "Total Orders",
-      amount: "158",
-      percentDiff: "12.4",
-    },
-    {
-      icon: <Users />,
-      title: "Total Customers",
-      amount: "87",
-      percentDiff: "8.3",
-    },
-    {
-      icon: <Package />,
-      title: "Total Products",
-      amount: "245",
-      percentDiff: "3.2",
-    },
-  ];
   return (
     <div>
       <div className="flex items-end justify-between">
@@ -40,14 +16,14 @@ export default function Dashboard() {
             Here&apos;s what&apos;s happening with your store today.
           </p>
         </div>
-
         <DateRangePicker />
       </div>
 
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-        {totalRecordList.map((totalRecord) => (
-          <TotalRecord key={totalRecord.title} totalRecord={totalRecord} />
-        ))}
+      <TotalRecord />
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
+        <RevenueOverview />
+        <OrdersOverview />
+        <RecentOrders />
       </div>
     </div>
   );

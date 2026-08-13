@@ -15,7 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
+export default function AdminSidebar({ sidebarOpen }) {
   const pathname = usePathname();
 
   const adminSidebarList = [
@@ -86,7 +86,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
       <nav className="flex flex-col gap-2">
         {adminSidebarList.map(({ item, icon, url }) => (
           <Link
-            className={`flex gap-2 p-3 rounded-sm hover:bg-gray-600 ${pathname === url && "bg-red-500 hover:bg-red-500"}`}
+            className={`flex gap-2 p-3 rounded-sm hover:bg-gray-600 ${pathname === url && "bg-red-500 hover:bg-red-500"} ${!sidebarOpen && "justify-center"}`}
             key={item}
             href={url}
           >
