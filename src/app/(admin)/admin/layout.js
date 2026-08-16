@@ -10,9 +10,11 @@ export default function AdminLayout({ children }) {
   return (
     <div className="flex h-screen">
       <AdminSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 flex flex-col">
         <AdminNavbar setSidebarOpen={setSidebarOpen} />
-        <main className="px-10 py-6 bg-white">{children}</main>
+        <main className="px-10 py-6 bg-gray-50 flex-1 overflow-y-auto">
+          {children}
+        </main>
       </div>
     </div>
   );

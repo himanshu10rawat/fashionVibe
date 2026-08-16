@@ -25,8 +25,7 @@ export default function DesktopNav() {
         borderColor="border-gray-100"
         strokeWidth="2"
         strokeColor="#6a7282"
-        textColor="text-gray-500"
-        placeholderColor="placeholder:text-gray-500"
+        textColor="text-gray-600"
       />
       <ActionNav />
     </header>

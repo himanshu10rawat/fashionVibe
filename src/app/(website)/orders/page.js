@@ -85,7 +85,7 @@ export default function Orders() {
             placeholder={"Search"}
             width="80"
             focusBorderColor="has-focus:border-gray-800"
-            textColor="text-gray-800"
+            textColor="text-gray-600"
             placeholderColor="placeholder:text-gray-800"
             strokeColor="#1e2939"
             strokeWidth="2"

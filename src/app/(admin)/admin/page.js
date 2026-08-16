@@ -1,3 +1,5 @@
+import LatestCustomer from "@/components/admin/dashboard/LatestCustomer";
+import LowStockProducts from "@/components/admin/dashboard/LowStockProducts";
 import OrdersOverview from "@/components/admin/dashboard/OrdersOverview";
 import RecentOrders from "@/components/admin/dashboard/RecentOrders";
 import RevenueOverview from "@/components/admin/dashboard/RevenueOverview";
@@ -24,6 +26,10 @@ export default function Dashboard() {
         <RevenueOverview />
         <OrdersOverview />
         <RecentOrders />
+        <div className="grid grid-cols-2 gap-4">
+          <LowStockProducts />
+          <LatestCustomer />
+        </div>
       </div>
     </div>
   );

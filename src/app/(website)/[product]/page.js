@@ -2,7 +2,7 @@ import Filter from "@/components/product/Filter";
 import FilterSearch from "@/components/product/FilterSearch";
 import PriceFilter from "@/components/product/PriceFilter";
 import ProductCard from "@/components/product/ProductCard";
-import Shorting from "@/components/product/Shorting";
+import Shorting from "@/components/shared/Shorting";
 import SizeFilter from "@/components/product/SizeFilter";
 
 export default async function Product({ params }) {
@@ -410,6 +410,16 @@ export default async function Product({ params }) {
     },
   ];
 
+  const sortOptions = [
+    "Recommended",
+    "What's New",
+    "Popularity",
+    "Better Discount",
+    "Price: High to Low",
+    "Price: Low to High",
+    "Customer Rating",
+  ];
+
   return (
     <>
       <div className="px-5 pt-5">
@@ -427,7 +437,7 @@ export default async function Product({ params }) {
         </div>
         <div className="flex-1 flex items-center justify-between">
           <SizeFilter />
-          <Shorting />
+          <Shorting sortOptions={sortOptions} />
         </div>
       </div>
       <div className="flex">

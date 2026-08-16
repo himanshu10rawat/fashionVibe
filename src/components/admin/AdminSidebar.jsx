@@ -67,7 +67,7 @@ export default function AdminSidebar({ sidebarOpen }) {
   ];
   return (
     <aside
-      className={`bg-black text-white px-3 py-4 ${sidebarOpen ? "w-60" : "w-20"}`}
+      className={`bg-black text-white px-3 py-4 ${sidebarOpen ? "w-60" : "w-20"} overflow-y-auto`}
     >
       <div className="mb-5 flex items-center gap-2 px-2">
         <div className="relative w-8 h-8 rounded-sm overflow-hidden">

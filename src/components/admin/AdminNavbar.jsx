@@ -3,7 +3,7 @@ import { Bell, Menu, Sun, User } from "lucide-react";
 
 export default function AdminNavbar({ setSidebarOpen }) {
   return (
-    <header className="bg-white shadow py-3 px-10 flex items-center justify-between sticky top-0 left-0">
+    <header className="bg-white shadow py-3 px-10 flex items-center justify-between sticky top-0 left-0 z-10">
       <div className="flex items-center gap-5">
         <button
           type="button"
@@ -14,7 +14,7 @@ export default function AdminNavbar({ setSidebarOpen }) {
         </button>
         <SearchInput
           placeholder={"Search anything..."}
-          placeholderColor="text-gray-900"
+          textColor="text-gray-600"
           rounded="rounded-sm"
           strokeWidth="2"
           strokeColor="gray"

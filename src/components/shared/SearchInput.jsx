@@ -12,16 +12,16 @@ export default function SearchInput({
   focusBorderColor = "has-focus:border-gray-200",
   type = "search",
   textColor = "text-gray-400",
-  placeholderColor = "text-gray-400",
+  placeholderColor = "placeholder:text-gray-400",
   textSize = "text-sm",
   strokeWidth = "1",
-  strokeColor = "darkGray",
+  strokeColor = "darkgray",
   iconHeight = "17",
   iconWidth = "17",
 }) {
   return (
     <label
-      htmlFor="search"
+      htmlFor={name}
       className={`flex items-center ${borderSize} ${bgColor} ${width} py-2.5 px-3 ${rounded} ${borderColor} mx-2 lg:mx-0 mb-4 lg:mb-0 mt-18 lg:mt-0 shadow-lg lg:shadow-none ${focusBgColor} ${focusBorderColor}`}
     >
       <Search
@@ -32,7 +32,7 @@ export default function SearchInput({
       />
       <input
         className={`${textColor} ml-3 outline-0 ${textSize} grow ${placeholderColor} has`}
-        id="search"
+        id={name}
         type={type}
         name={name}
         placeholder={placeholder}
