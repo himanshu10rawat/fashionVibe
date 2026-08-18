@@ -84,15 +84,19 @@ export default function AdminSidebar({ sidebarOpen }) {
         </span>
       </div>
       <nav className="flex flex-col gap-2">
-        {adminSidebarList.map(({ item, icon, url }) => (
-          <Link
-            className={`flex gap-2 p-3 rounded-sm hover:bg-gray-600 ${pathname === url && "bg-red-500 hover:bg-red-500"} ${!sidebarOpen && "justify-center"}`}
-            key={item}
-            href={url}
-          >
-            {icon} {sidebarOpen && item}
-          </Link>
-        ))}
+        {adminSidebarList.map(({ item, icon, url }) => {
+          const isActive =
+            url === "/admin" ? pathname === "/admin" : pathname.startsWith(url);
+          return (
+            <Link
+              className={`flex gap-2 p-3 rounded-sm hover:bg-gray-600 ${isActive && "bg-red-500 hover:bg-red-500"} ${!sidebarOpen && "justify-center"}`}
+              key={item}
+              href={url}
+            >
+              {icon} {sidebarOpen && item}
+            </Link>
+          );
+        })}
       </nav>
     </aside>
   );

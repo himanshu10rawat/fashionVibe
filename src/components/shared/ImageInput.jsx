@@ -1,0 +1,107 @@
+import { useState } from "react";
+import { ImagePlus, X } from "lucide-react";
+import Image from "next/image";
+
+const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+const MAX_FILES = 6;
+const MAX_SIZE_MB = 2;
+
+export default function ImageInput({ id, name, label }) {
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    const files = Array.from(e.target.files);
+    setError("");
+    e.target.value = "";
+
+    if (files.length === 0) return;
+
+    if (images.length + files.length > MAX_FILES) {
+      setError(`You can select up to ${MAX_FILES} images only.`);
+      return;
+    }
+
+    const validFiles = [];
+
+    for (const file of files) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        setError("Only JPG, PNG or WebP images are allowed.");
+        return;
+      }
+
+      if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+        setError(`Each image must be less than ${MAX_SIZE_MB}MB.`);
+        return;
+      }
+
+      validFiles.push({
+        file,
+        preview: URL.createObjectURL(file),
+      });
+    }
+
+    setImages((prev) => [...prev, ...validFiles]);
+  };
+
+  const handleRemove = (index) => {
+    setImages((prev) => {
+      URL.revokeObjectURL(prev[index].preview);
+      return prev.filter((_, i) => i !== index);
+    });
+  };
+
+  return (
+    <div>
+      <label htmlFor={id} className="text-sm mb-2 font-semibold text-gray-600">
+        {label} <span className="text-red-500">*</span>
+      </label>
+
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 mt-2">
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className="relative aspect-square rounded-lg overflow-hidden border border-gray-300"
+          >
+            <Image
+              src={img.preview}
+              alt={`preview-${index}`}
+              fill
+              sizes="100%"
+              className="w-full h-full object-cover"
+            />
+            <button
+              type="button"
+              onClick={() => handleRemove(index)}
+              className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ))}
+
+        {images.length < MAX_FILES && (
+          <label
+            htmlFor={id}
+            className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 transition text-sm text-gray-500 gap-1"
+          >
+            <ImagePlus size={22} />
+            Add Image
+          </label>
+        )}
+
+        <input
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          name={name}
+          id={id}
+          hidden
+          multiple
+          onChange={handleChange}
+        />
+      </div>
+
+      {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+    </div>
+  );
+}

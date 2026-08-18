@@ -3,6 +3,7 @@ import ProductTable from "@/components/admin/products/ProductTable";
 import SearchInput from "@/components/shared/SearchInput";
 import Shorting from "@/components/shared/Shorting";
 import { Filter, Plus } from "lucide-react";
+import Link from "next/link";
 
 export default function products() {
   const sortingOptions = [
@@ -30,13 +31,13 @@ export default function products() {
             Manage and organize your store products.
           </h2>
         </div>
-        <button
-          type="button"
+        <Link
+          href={"/admin/products/add-product"}
           className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
         >
           <Plus strokeWidth={3} size={18} />
           Add Product
-        </button>
+        </Link>
       </div>
 
       <div className="bg-white rounded-xl p-4 shadow-[0_0_5px_rgba(0,0,0,0.1)]">
