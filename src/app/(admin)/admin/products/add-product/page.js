@@ -34,7 +34,6 @@ export default function AddProduct() {
             type="button"
             className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
           >
-            <Plus strokeWidth={3} size={18} />
             Add Product
           </button>
         </div>
