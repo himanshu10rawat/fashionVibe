@@ -13,6 +13,8 @@ export default function AddProductForm() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -24,8 +26,7 @@ export default function AddProductForm() {
       price: "",
       discountPrice: "",
       tax: "",
-      mainImage: "",
-      additionalImages: [""],
+      productImages: null,
       sku: "",
       stockQuantity: "",
       lowStockThreshold: "",
@@ -85,7 +86,6 @@ export default function AddProductForm() {
               label={"Product Name"}
               name={"productName"}
               id={"productName"}
-              autoComplete={"name"}
               type={"text"}
               adminForm={true}
               placeholder={"Enter product name"}
@@ -94,12 +94,14 @@ export default function AddProductForm() {
             />
             <Select
               id={"brand"}
-              name={"brand"}
               label={"Brand"}
+              name={"brand"}
               required={true}
               options={brandOptions}
               register={register}
               errors={errors}
+              setValue={setValue}
+              watch={watch}
             />
             <Textarea
               id={"description"}
@@ -108,6 +110,9 @@ export default function AddProductForm() {
               maxCharacter={500}
               placeholder={"Enter product description..."}
               rows={5}
+              register={register}
+              errors={errors}
+              watch={watch}
             />
           </div>
         </FormCard>
@@ -122,6 +127,8 @@ export default function AddProductForm() {
               options={categoryOptions}
               register={register}
               errors={errors}
+              setValue={setValue}
+              watch={watch}
             />
             <Select
               id={"subCategory"}
@@ -131,6 +138,8 @@ export default function AddProductForm() {
               options={subCategoryOptions}
               register={register}
               errors={errors}
+              setValue={setValue}
+              watch={watch}
             />
             <Input
               register={register}
@@ -176,8 +185,8 @@ export default function AddProductForm() {
 
         <FormCard heading={"Product Images"}>
           <ImageInput
-            id={"images"}
-            name={"images"}
+            id={"productImages"}
+            name={"productImages"}
             label={"Upload Images (JPG, PNG or WebP, Max 2MB)"}
           />
         </FormCard>
@@ -237,6 +246,8 @@ export default function AddProductForm() {
               options={stockStatusOptions}
               register={register}
               errors={errors}
+              setValue={setValue}
+              watch={watch}
             />
           </div>
         </FormCard>
