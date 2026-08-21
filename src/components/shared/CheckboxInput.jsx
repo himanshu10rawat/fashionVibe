@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Plus, X } from "lucide-react";
 
 export default function CheckboxInput({
@@ -7,16 +7,29 @@ export default function CheckboxInput({
   defaultOptions,
   placeholder,
   isColorInput,
+  register,
+  setValue,
+  errors,
 }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [customItems, setCustomItems] = useState([]);
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  // Register field once so RHF/Zod knows about it (default value)
+  useEffect(() => {
+    register(name);
+  }, [name, register]);
+
   const toggleItem = (item) => {
-    setSelectedItems((prev) =>
-      prev.includes(item) ? prev.filter((s) => s !== item) : [...prev, item],
-    );
+    setSelectedItems((prev) => {
+      const updated = prev.includes(item)
+        ? prev.filter((s) => s !== item)
+        : [...prev, item];
+
+      setValue(name, updated, { shouldValidate: true });
+      return updated;
+    });
   };
 
   const handleAddCustomItem = () => {
@@ -27,7 +40,11 @@ export default function CheckboxInput({
       !customItems.includes(value)
     ) {
       setCustomItems((prev) => [...prev, value]);
-      setSelectedItems((prev) => [...prev, value]);
+      setSelectedItems((prev) => {
+        const updated = [...prev, value];
+        setValue(name, updated, { shouldValidate: true });
+        return updated;
+      });
     }
     setInputValue("");
     setShowInput(false);
@@ -47,7 +64,7 @@ export default function CheckboxInput({
             key={item}
             type="button"
             onClick={() => toggleItem(item)}
-            style={{ backgroundColor: isColorInput && item }}
+            style={isColorInput ? { backgroundColor: item } : undefined}
             className={`w-10 h-10 ${isColorInput ? "rounded-full" : "rounded-sm"} border-2 border-gray-100 text-sm font-medium transition duration-500 cursor-pointer outline-2
               ${selectedItems.includes(item) ? "outline-red-500" : "hover:outline-red-200 outline-transparent"}`}
           >
@@ -84,13 +101,12 @@ export default function CheckboxInput({
         )}
       </div>
       <p className="text-xs text-gray-400 mt-2">
-        Add available {name} for this product
+        Add available {label} for this product
       </p>
 
-      {/* Hidden inputs for form submission */}
-      {selectedItems.map((item) => (
-        <input key={item} type="hidden" name={name} value={item} />
-      ))}
+      {errors[name] && (
+        <p className="text-red-600 mt-1 text-sm">{errors[name].message}</p>
+      )}
     </div>
   );
 }

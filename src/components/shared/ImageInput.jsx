@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImagePlus, X } from "lucide-react";
 import Image from "next/image";
 
@@ -6,9 +6,20 @@ const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILES = 6;
 const MAX_SIZE_MB = 2;
 
-export default function ImageInput({ id, name, label }) {
+export default function ImageInput({
+  id,
+  name,
+  label,
+  register,
+  setValue,
+  errors,
+}) {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    register(name);
+  }, [name, register]);
 
   const handleChange = (e) => {
     const files = Array.from(e.target.files);
@@ -41,13 +52,21 @@ export default function ImageInput({ id, name, label }) {
       });
     }
 
-    setImages((prev) => [...prev, ...validFiles]);
+    const updated = [...images, ...validFiles];
+    setImages(updated);
+
+    // 👇 RHF ko manually update karo
+    setValue(name, updated, { shouldValidate: true });
   };
 
   const handleRemove = (index) => {
     setImages((prev) => {
       URL.revokeObjectURL(prev[index].preview);
-      return prev.filter((_, i) => i !== index);
+      const updated = prev.filter((_, i) => i !== index);
+
+      // 👇 removal pe bhi RHF sync karo
+      setValue(name, updated, { shouldValidate: true });
+      return updated;
     });
   };
 
@@ -102,6 +121,10 @@ export default function ImageInput({ id, name, label }) {
       </div>
 
       {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
+
+      {errors[name] && (
+        <p className="text-red-600 mt-1 text-sm">{errors[name].message}</p>
+      )}
     </div>
   );
 }

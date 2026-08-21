@@ -1,17 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function RadioInput({ name, options, required }) {
+export default function RadioInput({
+  label,
+  name,
+  options,
+  required,
+  register,
+  setValue,
+  errors,
+}) {
   const [item, setItem] = useState("");
+
+  useEffect(() => {
+    register(name);
+  }, [name, register]);
+
   return (
     <>
       <h3 className="capitalize text-sm font-semibold text-gray-700 mb-3">
-        {name} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-red-500">*</span>}
       </h3>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 mb-2">
         {options.map((opt) => (
           <div key={opt} className="flex gap-2 items-center">
             <input
-              onChange={() => setItem(opt)}
+              onChange={() => {
+                setItem(opt);
+                setValue(name, opt, { shouldValidate: true });
+              }}
               className="w-4 h-4"
               type="radio"
               name={name}
@@ -44,6 +60,9 @@ export default function RadioInput({ name, options, required }) {
           </div>
         ))}
       </div>
+      {errors[name] && (
+        <p className="text-red-600 mt-1 text-sm">{errors[name].message}</p>
+      )}
     </>
   );
 }

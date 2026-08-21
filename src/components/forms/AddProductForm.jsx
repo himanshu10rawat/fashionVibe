@@ -8,6 +8,31 @@ import Textarea from "../shared/Textarea";
 import ImageInput from "../shared/ImageInput";
 import CheckboxInput from "../shared/CheckboxInput";
 import RadioInput from "../shared/RadioInput";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { productSchema } from "../validations/productSchema";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+
+function FormButtons({ onCancel }) {
+  return (
+    <>
+      <button
+        type="button"
+        onClick={onCancel}
+        className="rounded-sm border border-white bg-white hover:bg-white hover:text-red-500 shadow-[0_0_2px_rgba(0,0,0,0.2)] transition-colors duration-300 ease-in-out cursor-pointer text-gray-600 text-sm font-semibold py-2.5 px-5"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
+      >
+        Add Product
+      </button>
+    </>
+  );
+}
 
 export default function AddProductForm() {
   const {
@@ -15,8 +40,10 @@ export default function AddProductForm() {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(productSchema),
     defaultValues: {
       productName: "",
       brand: "",
@@ -26,57 +53,53 @@ export default function AddProductForm() {
       price: "",
       discountPrice: "",
       tax: "",
-      productImages: null,
+      productImages: [],
       sku: "",
       stockQuantity: "",
       lowStockThreshold: "",
       stockStatus: "",
-      productSize: "",
-      productColor: "",
+      productSizes: [],
+      productColors: [],
       productStatus: "",
     },
   });
+
+  const [resetKey, setResetKey] = useState(0);
+
+  const handleCancel = () => {
+    reset();
+    setResetKey((prev) => prev + 1);
+  };
 
   const onSubmit = (data) => {
     console.log("Product Data", data);
   };
 
-  const brandOptions = [
-    "select brand",
-    "nike",
-    "puma",
-    "adidas",
-    "fossil",
-    "zara",
-    "skybags",
-    "ray-ban",
-    "minimalist",
-  ];
-
-  const categoryOptions = [
-    "select category",
-    "men",
-    "women",
-    "accessories",
-    "beauty",
-  ];
-
-  const subCategoryOptions = [
-    "select sub category",
-    "men shirt",
-    "women jean",
-    "accessories",
-    "beauty",
-  ];
-
-  const stockStatusOptions = [
-    "select stock status",
-    "in stock",
-    "out of stock",
-  ];
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex items-start justify-between mb-5">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
+            Add Product
+          </h1>
+          <div className="text-sm text-gray-400 font-medium flex items-center gap-2">
+            <Link className="flex items-center gap-0.5" href={"/admin"}>
+              Home <ChevronRight size={16} />
+            </Link>
+            <Link
+              className="flex items-center gap-0.5"
+              href={"/admin/products"}
+            >
+              Products <ChevronRight size={16} />
+            </Link>
+            <span className="text-red-500">Add Product</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2.5">
+          <FormButtons onCancel={handleCancel} />
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mb-3">
         <FormCard heading={"Product Information"}>
           <div className="flex flex-col gap-3">
@@ -93,11 +116,22 @@ export default function AddProductForm() {
               focusBorderColor="focus:border-red-500"
             />
             <Select
+              key={`brand-${resetKey}`}
               id={"brand"}
               label={"Brand"}
               name={"brand"}
               required={true}
-              options={brandOptions}
+              options={[
+                "select brand",
+                "nike",
+                "puma",
+                "adidas",
+                "fossil",
+                "zara",
+                "skybags",
+                "ray-ban",
+                "minimalist",
+              ]}
               register={register}
               errors={errors}
               setValue={setValue}
@@ -107,7 +141,6 @@ export default function AddProductForm() {
               id={"description"}
               name={"description"}
               label={"Description"}
-              maxCharacter={500}
               placeholder={"Enter product description..."}
               rows={5}
               register={register}
@@ -120,22 +153,36 @@ export default function AddProductForm() {
         <FormCard heading={"Category & Pricing"}>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
             <Select
+              key={`category-${resetKey}`}
               id={"category"}
               name={"category"}
               label={"Category"}
               required={true}
-              options={categoryOptions}
+              options={[
+                "select category",
+                "men",
+                "women",
+                "accessories",
+                "beauty",
+              ]}
               register={register}
               errors={errors}
               setValue={setValue}
               watch={watch}
             />
             <Select
+              key={`subCategory-${resetKey}`}
               id={"subCategory"}
               name={"subCategory"}
               label={"Sub Category"}
               required={true}
-              options={subCategoryOptions}
+              options={[
+                "select sub category",
+                "men shirt",
+                "women jean",
+                "accessories",
+                "beauty",
+              ]}
               register={register}
               errors={errors}
               setValue={setValue}
@@ -146,7 +193,6 @@ export default function AddProductForm() {
               errors={errors}
               label={"Price"}
               name={"price"}
-              autoComplete={"number"}
               id={"price"}
               type={"number"}
               adminForm={true}
@@ -160,7 +206,6 @@ export default function AddProductForm() {
               errors={errors}
               label={"Discount Price"}
               name={"discountPrice"}
-              autoComplete={"number"}
               id={"discountPrice"}
               type={"number"}
               adminForm={true}
@@ -173,7 +218,6 @@ export default function AddProductForm() {
               errors={errors}
               label={"Tax (%)"}
               name={"tax"}
-              autoComplete={"number"}
               id={"tax"}
               type={"number"}
               adminForm={true}
@@ -185,9 +229,13 @@ export default function AddProductForm() {
 
         <FormCard heading={"Product Images"}>
           <ImageInput
+            key={`productImages-${resetKey}`}
             id={"productImages"}
             name={"productImages"}
             label={"Upload Images (JPG, PNG or WebP, Max 2MB)"}
+            register={register}
+            setValue={setValue}
+            errors={errors}
           />
         </FormCard>
 
@@ -201,7 +249,6 @@ export default function AddProductForm() {
               placeholder={"Enter SKU"}
               id={"sku"}
               name={"sku"}
-              autoComplete={"sku"}
               adminForm={true}
               focusBorderColor={"focus:border-red-500"}
             />
@@ -216,7 +263,7 @@ export default function AddProductForm() {
               placeholder={"Enter stock quantity"}
               id={"stockQuantity"}
               name={"stockQuantity"}
-              autoComplete={"stock-quantity"}
+              type={"number"}
               adminForm={true}
               focusBorderColor={"focus:border-red-500"}
             />
@@ -229,7 +276,7 @@ export default function AddProductForm() {
                 placeholder={"Enter threshold"}
                 id={"lowStockThreshold"}
                 name={"lowStockThreshold"}
-                autoComplete={"low-stock-threshold"}
+                type={"number"}
                 adminForm={true}
                 focusBorderColor={"focus:border-red-500"}
               />
@@ -239,11 +286,12 @@ export default function AddProductForm() {
             </div>
 
             <Select
+              key={`stockStatus-${resetKey}`}
               id={"stockStatus"}
               name={"stockStatus"}
               label={"Stock Status"}
               required={true}
-              options={stockStatusOptions}
+              options={["select stock status", "in stock", "out of stock"]}
               register={register}
               errors={errors}
               setValue={setValue}
@@ -254,42 +302,44 @@ export default function AddProductForm() {
 
         <FormCard heading={"Product Variants"}>
           <CheckboxInput
+            key={`productSizes-${resetKey}`}
             label={"Sizes"}
-            name={"sizes"}
+            name={"productSizes"}
             defaultOptions={["XS", "S", "M", "L", "XL", "XXL"]}
             placeholder={"size"}
+            register={register}
+            setValue={setValue}
+            errors={errors}
           />
           <CheckboxInput
+            key={`productColors-${resetKey}`}
             label={"Colors"}
-            name={"colors"}
+            name={"productColors"}
             defaultOptions={["black", "white", "gray", "blue", "red", "green"]}
             placeholder={"color"}
             isColorInput={true}
+            register={register}
+            setValue={setValue}
+            errors={errors}
           />
         </FormCard>
 
         <FormCard heading={"Product Status"}>
           <RadioInput
-            name={"status"}
+            key={`productStatus-${resetKey}`}
+            label={"Status"}
+            name={"productStatus"}
             options={["active", "draft", "inactive"]}
             required={true}
+            register={register}
+            setValue={setValue}
+            errors={errors}
           />
         </FormCard>
       </div>
 
       <div className="shadow-[0_0_5px_rgba(0,0,0,0.1)] p-4 rounded-md bg-white flex items-center justify-end gap-2.5">
-        <button
-          type="reset"
-          className="rounded-sm border border-white bg-white hover:bg-white hover:text-red-500 shadow-[0_0_2px_rgba(0,0,0,0.2)] transition-colors duration-300 ease-in-out cursor-pointer text-gray-600 text-sm font-semibold py-2.5 px-5"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
-        >
-          Add Product
-        </button>
+        <FormButtons onCancel={handleCancel} />
       </div>
     </form>
   );

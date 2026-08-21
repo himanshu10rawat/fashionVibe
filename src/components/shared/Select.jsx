@@ -97,7 +97,7 @@ export default function Select({
       </div>
 
       {errors?.[name] && (
-        <p className="text-red-600 mt-1 text-xs">{errors[name].message}</p>
+        <p className="text-red-600 mt-1 text-sm">{errors[name].message}</p>
       )}
     </div>
   );

@@ -1,8 +1,9 @@
+import { DESCRIPTION_MAX_LENGTH } from "../validations/productSchema";
+
 export default function Textarea({
   id,
   name,
   label,
-  maxCharacter,
   placeholder,
   rows,
   register,
@@ -26,13 +27,13 @@ export default function Textarea({
             id={id}
             name={name}
             rows={rows}
-            maxLength={maxCharacter}
+            maxLength={DESCRIPTION_MAX_LENGTH}
             placeholder={placeholder}
             {...register(name)}
             className="w-full border border-gray-300 rounded-sm bg-white py-2 px-4 text-gray-600 text-sm outline-0 resize-none focus:border-red-500"
           />
           <span className="absolute bottom-3 right-3 text-gray-400 text-xs">
-            {currentLength}/{maxCharacter}
+            {currentLength}/{DESCRIPTION_MAX_LENGTH}
           </span>
         </div>
       </div>
