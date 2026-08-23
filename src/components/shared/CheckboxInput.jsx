@@ -10,8 +10,12 @@ export default function CheckboxInput({
   register,
   setValue,
   errors,
+  checkedOptions = null,
 }) {
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState(
+    checkedOptions ? checkedOptions : [],
+  );
+
   const [customItems, setCustomItems] = useState([]);
   const [showInput, setShowInput] = useState(false);
   const [inputValue, setInputValue] = useState("");

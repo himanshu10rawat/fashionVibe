@@ -1,10 +1,21 @@
 import { z } from "zod";
 
+export const DESCRIPTION_MAX_LENGTH = 500;
+
 const ALLOWED_TYPES = ["images/jpeg", "image/jpg", "image/png", "image/webp"];
 const MAX_FILES = 6;
 const MAX_SIZE_MB = 2;
 
-export const DESCRIPTION_MAX_LENGTH = 500;
+const existingImageSchema = z.object({
+  preview: z.string(),
+  isExisting: z.literal(true),
+});
+
+const newImageSchema = z.object({
+  file: z.instanceof(File),
+  preview: z.string(),
+  isExisting: z.literal(false).optional(),
+});
 
 export const productSchema = z.object({
   productName: z.string().min("1", "Product Name is required."),
@@ -21,20 +32,21 @@ export const productSchema = z.object({
   discountPrice: z.string(),
   tax: z.string(),
   productImages: z
-    .array(
-      z.object({
-        file: z.instanceof(File),
-        preview: z.string(),
-      }),
-    )
+    .array(z.union([existingImageSchema, newImageSchema]))
     .min(1, "Please upload at least 1 image.")
     .max(MAX_FILES, `You can upload up to ${MAX_FILES} images only`)
     .refine(
-      (imgs) => imgs.every((img) => ALLOWED_TYPES.includes(img.file.type)),
+      (imgs) =>
+        imgs.every(
+          (img) => img.isExisting || ALLOWED_TYPES.includes(img.file.type),
+        ),
       "Only JPG, PNG or WebP images are allowed.",
     )
     .refine(
-      (imgs) => imgs.every((img) => img.file.size <= MAX_SIZE_MB * 1024 * 1024),
+      (imgs) =>
+        imgs.every(
+          (img) => img.isExisting || img.file.size <= MAX_SIZE_MB * 1024 * 1024,
+        ),
       `Each image must be less than ${MAX_SIZE_MB}MB.`,
     ),
   sku: z.string().min(1, "SKU is required."),

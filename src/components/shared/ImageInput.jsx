@@ -13,13 +13,19 @@ export default function ImageInput({
   register,
   setValue,
   errors,
+  selectedImages,
 }) {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(() =>
+    selectedImages
+      ? selectedImages.map((img) => ({ ...img, isExisting: true }))
+      : [],
+  );
   const [error, setError] = useState("");
 
   useEffect(() => {
     register(name);
-  }, [name, register]);
+    setValue(name, images, { shouldValidate: false });
+  }, [name, register, setValue, images]);
 
   const handleChange = (e) => {
     const files = Array.from(e.target.files);
@@ -49,22 +55,24 @@ export default function ImageInput({
       validFiles.push({
         file,
         preview: URL.createObjectURL(file),
+        isExisting: false,
       });
     }
 
     const updated = [...images, ...validFiles];
     setImages(updated);
-
-    // 👇 RHF ko manually update karo
     setValue(name, updated, { shouldValidate: true });
   };
 
   const handleRemove = (index) => {
     setImages((prev) => {
-      URL.revokeObjectURL(prev[index].preview);
-      const updated = prev.filter((_, i) => i !== index);
+      const target = prev[index];
 
-      // 👇 removal pe bhi RHF sync karo
+      if (!target.isExisting) {
+        URL.revokeObjectURL(target.preview);
+      }
+
+      const updated = prev.filter((_, i) => i !== index);
       setValue(name, updated, { shouldValidate: true });
       return updated;
     });
@@ -79,7 +87,7 @@ export default function ImageInput({
       <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 mt-2">
         {images.map((img, index) => (
           <div
-            key={index}
+            key={img.isExisting ? img.preview : index}
             className="relative aspect-square rounded-lg overflow-hidden border border-gray-300"
           >
             <Image

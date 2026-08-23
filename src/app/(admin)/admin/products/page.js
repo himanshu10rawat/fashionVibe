@@ -27,12 +27,12 @@ export default function products() {
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">Products</h1>
-          <h2 className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500">
             Manage and organize your store products.
-          </h2>
+          </p>
         </div>
         <Link
-          href={"/admin/products/add-product"}
+          href={"/admin/products/add"}
           className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
         >
           <Plus strokeWidth={3} size={18} />

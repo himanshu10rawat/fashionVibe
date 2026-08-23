@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, Eye, Pencil, Trash } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProductTable() {
@@ -195,18 +196,18 @@ export default function ProductTable() {
                 <td className="p-3 text-gray-500">{createdAt}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-2.5">
-                    <button
-                      type="button"
+                    <Link
+                      href={`/admin/products/${id}`}
                       className="bg-white p-2 rounded-sm shadow-[0_0_5px_rgba(0,0,0,0.2)] cursor-pointer"
                     >
                       <Eye size={12} stroke="gray" />
-                    </button>
-                    <button
-                      type="button"
+                    </Link>
+                    <Link
+                      href={`/admin/products/${id}/edit`}
                       className="bg-white p-2 rounded-sm shadow-[0_0_5px_rgba(0,0,0,0.2)] cursor-pointer"
                     >
                       <Pencil size={12} stroke="gray" />
-                    </button>
+                    </Link>
                     <button
                       type="button"
                       className="bg-white p-2 rounded-sm shadow-[0_0_5px_rgba(0,0,0,0.2)] cursor-pointer"

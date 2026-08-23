@@ -8,8 +8,9 @@ export default function RadioInput({
   register,
   setValue,
   errors,
+  status = null,
 }) {
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState(status);
 
   useEffect(() => {
     register(name);

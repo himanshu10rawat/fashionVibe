@@ -12,9 +12,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { productSchema } from "../validations/productSchema";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function FormButtons({ onCancel }) {
+function FormButtons({ onCancel, isEdit }) {
   return (
     <>
       <button
@@ -28,13 +28,13 @@ function FormButtons({ onCancel }) {
         type="submit"
         className="flex items-center rounded-sm gap-1.5 border border-red-500 bg-red-500 hover:bg-white hover:text-red-500 transition-colors duration-500 ease-in-out cursor-pointer text-white text-sm font-semibold py-2.5 px-5"
       >
-        Add Product
+        {isEdit ? "Update Product" : "Add Product"}
       </button>
     </>
   );
 }
 
-export default function AddProductForm() {
+export default function ProductForm({ product = null, isEdit = false }) {
   const {
     register,
     handleSubmit,
@@ -66,21 +66,52 @@ export default function AddProductForm() {
 
   const [resetKey, setResetKey] = useState(0);
 
+  useEffect(() => {
+    if (product) {
+      reset({
+        productName: product.name,
+        brand: product.brand,
+        description: product.description,
+        category: product.category,
+        subCategory: product.subCategory,
+        price: String(product.price),
+        discountPrice: String(product.discountPrice),
+        tax: product.tax,
+        productImages: product.images,
+        sku: product.sku,
+        stockQuantity: String(product.stock),
+        lowStockThreshold: product.threshold,
+        stockStatus: product.stockStatus,
+        productStatus: product.status,
+        productSizes: product.sizes,
+        productColors: product.colors,
+      });
+    }
+  }, [product, reset]);
+
   const handleCancel = () => {
     reset();
     setResetKey((prev) => prev + 1);
   };
 
+  const onInvalid = (errors) => {
+    console.log("VALIDATION ERRORS:", errors);
+  };
+
   const onSubmit = (data) => {
-    console.log("Product Data", data);
+    if (isEdit) {
+      console.log("Update Product", data);
+    } else {
+      console.log("Product Data", data);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)}>
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-            Add Product
+            {isEdit ? "Update Product" : "Add Product"}
           </h1>
           <div className="text-sm text-gray-400 font-medium flex items-center gap-2">
             <Link className="flex items-center gap-0.5" href={"/admin"}>
@@ -92,11 +123,13 @@ export default function AddProductForm() {
             >
               Products <ChevronRight size={16} />
             </Link>
-            <span className="text-red-500">Add Product</span>
+            <span className="text-red-500">
+              {isEdit ? "Update Product" : "Add Product"}
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-2.5">
-          <FormButtons onCancel={handleCancel} />
+          <FormButtons onCancel={handleCancel} isEdit={isEdit} />
         </div>
       </div>
 
@@ -198,7 +231,6 @@ export default function AddProductForm() {
               adminForm={true}
               placeholder={"0.00"}
               required={true}
-              isPrice={true}
               focusBorderColor={"focus:border-red-500"}
             />
             <Input
@@ -210,7 +242,6 @@ export default function AddProductForm() {
               type={"number"}
               adminForm={true}
               placeholder={"0.00"}
-              isPrice={true}
               focusBorderColor={"focus:border-red-500"}
             />
             <Input
@@ -236,6 +267,7 @@ export default function AddProductForm() {
             register={register}
             setValue={setValue}
             errors={errors}
+            selectedImages={product && product.images}
           />
         </FormCard>
 
@@ -310,6 +342,7 @@ export default function AddProductForm() {
             register={register}
             setValue={setValue}
             errors={errors}
+            checkedOptions={product && product.sizes}
           />
           <CheckboxInput
             key={`productColors-${resetKey}`}
@@ -321,6 +354,7 @@ export default function AddProductForm() {
             register={register}
             setValue={setValue}
             errors={errors}
+            checkedOptions={product && product.colors}
           />
         </FormCard>
 
@@ -334,12 +368,13 @@ export default function AddProductForm() {
             register={register}
             setValue={setValue}
             errors={errors}
+            status={product && product.status}
           />
         </FormCard>
       </div>
 
       <div className="shadow-[0_0_5px_rgba(0,0,0,0.1)] p-4 rounded-md bg-white flex items-center justify-end gap-2.5">
-        <FormButtons onCancel={handleCancel} />
+        <FormButtons onCancel={handleCancel} isEdit={isEdit} />
       </div>
     </form>
   );
