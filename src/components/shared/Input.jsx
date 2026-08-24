@@ -1,4 +1,4 @@
-import { Eye, EyeOff, IndianRupee } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Input({
   register,
