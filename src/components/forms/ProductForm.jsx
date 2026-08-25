@@ -115,7 +115,7 @@ export default function ProductForm({ product = null, isEdit = false }) {
           </h1>
           <div className="text-sm text-gray-400 font-medium flex items-center gap-2">
             <Link className="flex items-center gap-0.5" href={"/admin"}>
-              Home <ChevronRight size={16} />
+              Dashboard <ChevronRight size={16} />
             </Link>
             <Link
               className="flex items-center gap-0.5"

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-export default function ProductFilter() {
+export default function AdminFilter() {
   const filterOptions = [
     { option: "all", length: "245" },
     { option: "active", length: "198" },

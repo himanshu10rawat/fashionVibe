@@ -1,11 +1,110 @@
-import ProductFilter from "@/components/admin/products/ProductFilter";
-import ProductTable from "@/components/admin/products/ProductTable";
+import AdminFilter from "@/components/admin/AdminFilter";
+import AdminTable from "@/components/admin/AdminTable";
 import SearchInput from "@/components/shared/SearchInput";
 import Shorting from "@/components/shared/Shorting";
-import { Filter, Plus } from "lucide-react";
+import { ChevronRight, Filter, Plus } from "lucide-react";
 import Link from "next/link";
 
 export default function products() {
+  const productList = [
+    {
+      id: 1,
+      name: "Nike Air Max 270",
+      sku: "NK270001",
+      category: "Men",
+      brand: "Nike",
+      price: "₹4,599",
+      stock: 24,
+      status: "Active",
+      createdAt: "Jun 12, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 2,
+      name: "Puma Essentials Hoodie",
+      sku: "PUHOOD001",
+      category: "Men",
+      brand: "Puma",
+      price: "₹2,999",
+      stock: 12,
+      status: "Active",
+      createdAt: "Jun 11, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 3,
+      name: "Adidas Running Shoes",
+      sku: "ADRUN001",
+      category: "Men",
+      brand: "Adidas",
+      price: "₹3,499",
+      stock: 8,
+      status: "Active",
+      createdAt: "Jun 10, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 4,
+      name: "Fossil Chronograph Watch",
+      sku: "FOSCH001",
+      category: "Men",
+      brand: "Fossil",
+      price: "₹7,999",
+      stock: 3,
+      status: "Out of Stock",
+      createdAt: "Jun 9, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 5,
+      name: "Zara Midi Dress",
+      sku: "ZARMD001",
+      category: "Women",
+      brand: "Zara",
+      price: "₹3,299",
+      stock: 18,
+      status: "Active",
+      createdAt: "Jun 8, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 6,
+      name: "Skybags Laptop Backpack",
+      sku: "SKYBP001",
+      category: "Accessories",
+      brand: "Skybags",
+      price: "₹2,499",
+      stock: 0,
+      status: "Out of Stock",
+      createdAt: "Jun 7, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 7,
+      name: "Ray-Ban Wayfarer",
+      sku: "RAYWB001",
+      category: "Accessories",
+      brand: "Ray-Ban",
+      price: "₹8,499",
+      stock: 15,
+      status: "Active",
+      createdAt: "Jun 6, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+    {
+      id: 8,
+      name: "Minimalist Face Serum",
+      sku: "MINFS001",
+      category: "Beauty",
+      brand: "Minimalist",
+      price: "₹799",
+      stock: 32,
+      status: "Active",
+      createdAt: "Jun 5, 2025",
+      image: "/modal-images/men1.jpg",
+    },
+  ];
+
   const sortingOptions = [
     "Newest",
     "Popularity",
@@ -27,6 +126,12 @@ export default function products() {
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">Products</h1>
+          <div className="text-sm text-gray-400 font-medium flex items-center gap-1 mt-2 mb-3">
+            <Link className="flex items-center gap-0.5" href={"/admin"}>
+              Dashboard <ChevronRight size={16} />
+            </Link>
+            <span className="text-red-500">Products</span>
+          </div>
           <p className="text-sm text-gray-500">
             Manage and organize your store products.
           </p>
@@ -75,10 +180,14 @@ export default function products() {
             </button>
           </div>
         </div>
-        <ProductFilter />
+        <AdminFilter />
       </div>
 
-      <ProductTable />
+      <AdminTable
+        tableData={productList}
+        page={"product"}
+        urlTitle={"products"}
+      />
     </>
   );
 }
