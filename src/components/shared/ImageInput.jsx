@@ -14,6 +14,7 @@ export default function ImageInput({
   setValue,
   errors,
   selectedImages,
+  singleImage = false,
 }) {
   const [images, setImages] = useState(() =>
     selectedImages
@@ -29,6 +30,7 @@ export default function ImageInput({
 
   const handleChange = (e) => {
     const files = Array.from(e.target.files);
+
     setError("");
     e.target.value = "";
 
@@ -84,11 +86,13 @@ export default function ImageInput({
         {label} <span className="text-red-500">*</span>
       </label>
 
-      <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 mt-2">
+      <div
+        className={`${!singleImage ? "grid grid-cols-2 xl:grid-cols-3 gap-3" : ""} mt-2`}
+      >
         {images.map((img, index) => (
           <div
             key={img.isExisting ? img.preview : index}
-            className="relative aspect-square rounded-lg overflow-hidden border border-gray-300"
+            className={`relative ${!singleImage ? "aspect-square" : "h-50"} rounded-lg overflow-hidden border border-gray-300`}
           >
             <Image
               src={img.preview}
@@ -100,22 +104,24 @@ export default function ImageInput({
             <button
               type="button"
               onClick={() => handleRemove(index)}
-              className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1"
+              className="absolute top-1 right-1 bg-black/50 transition-colors duration-300 hover:bg-black/80 text-white rounded-full cursor-pointer p-1"
             >
               <X size={14} />
             </button>
           </div>
         ))}
 
-        {images.length < MAX_FILES && (
-          <label
-            htmlFor={id}
-            className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 transition text-sm text-gray-500 gap-1"
-          >
-            <ImagePlus size={22} />
-            Add Image
-          </label>
-        )}
+        {!singleImage
+          ? images.length < MAX_FILES
+          : images.length < 1 && (
+              <label
+                htmlFor={id}
+                className={`${!singleImage ? "aspect-square" : "h-50"} rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-gray-400 transition text-sm text-gray-500 gap-1`}
+              >
+                <ImagePlus size={22} />
+                Add Image
+              </label>
+            )}
 
         <input
           type="file"
@@ -123,7 +129,7 @@ export default function ImageInput({
           name={name}
           id={id}
           hidden
-          multiple
+          multiple={!singleImage}
           onChange={handleChange}
         />
       </div>

@@ -113,7 +113,7 @@ export default function ProductForm({ product = null, isEdit = false }) {
           <h1 className="text-2xl font-semibold text-gray-800 mb-2">
             {isEdit ? "Update Product" : "Add Product"}
           </h1>
-          <div className="text-sm text-gray-400 font-medium flex items-center gap-2">
+          <div className="text-sm text-gray-500 font-medium flex items-center gap-2">
             <Link className="flex items-center gap-0.5" href={"/admin"}>
               Dashboard <ChevronRight size={16} />
             </Link>

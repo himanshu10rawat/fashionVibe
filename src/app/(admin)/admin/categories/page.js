@@ -1,77 +1,10 @@
-import AdminFilter from "@/components/admin/AdminFilter";
-import AdminTable from "@/components/admin/AdminTable";
+import CategoriesTable from "@/components/admin/categories/CategoriesTable";
 import SearchInput from "@/components/shared/SearchInput";
 import Shorting from "@/components/shared/Shorting";
 import { ChevronRight, Download, Filter, Plus } from "lucide-react";
 import Link from "next/link";
 
 export default function categories() {
-  const categoryList = [
-    {
-      id: 1,
-      name: "Men",
-      slug: "men",
-      products: 85,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 12, 2025",
-    },
-    {
-      id: 2,
-      name: "Women",
-      slug: "women",
-      products: 72,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 11, 2025",
-    },
-    {
-      id: 3,
-      name: "Kids",
-      slug: "kids",
-      products: 34,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 10, 2025",
-    },
-    {
-      id: 4,
-      name: "Shoes",
-      slug: "shoes",
-      products: 28,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 9, 2025",
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      slug: "accessories",
-      products: 26,
-      status: "inactive",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 8, 2025",
-    },
-    {
-      id: 6,
-      name: "Beauty",
-      slug: "beauty",
-      products: 19,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 7, 2025",
-    },
-    {
-      id: 7,
-      name: "Watches",
-      slug: "watches",
-      products: 14,
-      status: "active",
-      image: "/products/shoes1.jpg",
-      createdAt: "Jun 6, 2025",
-    },
-  ];
-
   const sortingOptions = [
     "Newest",
     "Popularity",
@@ -85,7 +18,7 @@ export default function categories() {
       <div className="flex items-start justify-between mb-5">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">Categories</h1>
-          <div className="text-sm text-gray-400 font-medium flex items-center gap-1 mt-2 mb-3">
+          <div className="text-sm text-gray-500 font-medium flex items-center gap-1 mt-2 mb-3">
             <Link className="flex items-center gap-0.5" href={"/admin"}>
               Dashboard <ChevronRight size={16} />
             </Link>
@@ -143,11 +76,7 @@ export default function categories() {
         </div>
       </div>
 
-      <AdminTable
-        tableData={categoryList}
-        page={"category"}
-        urlTitle={"categories"}
-      />
+      <CategoriesTable />
     </>
   );
 }
